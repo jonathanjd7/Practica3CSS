@@ -3,20 +3,21 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./comerce.css" />
     <title>E-commerce UI</title>
   
   </head>
   <body>
     <h2>Producto Destacado</h2>
     <div class="producto">
-      <img src="./imagenes/aguacoco.jpg" alt="Producto" id="producto_imagen" />
+      <img src="./aguacoco.jpg" alt="Producto" id="producto_imagen" />
       <h3>Agua de Coco</h3>
       <p class="precio--oferta" id="precio">$3.99</p>
       <div class="variantes">
         <div
           class="variante"
           style="background: red"
-          onclick="cambiarImagen('imagenes/cocacola.jpg', 1.50,'Coca-Cola')"
+          onclick="cambiarImagen('./cocacola.jpg', 1.50,'Coca-Cola')"
         >
           Coca-Cola
         </div>
@@ -49,7 +50,7 @@
     <h2>Productos</h2>
     <div class="productos-grid">
       <div class="producto-grid">
-        <img src="./imagenes/cerveza.jpg" alt="Cerveza" />
+        <img src="./cerveza.jpg" alt="Cerveza" />
       </div>
       <div class="producto-grid">
         <img src="./imagenes/cocacola.jpg" alt="Refrescos" />
@@ -61,7 +62,7 @@
         <img src="./imagenes/vinotinto.jpg" alt="Vino Tinto" />
       </div>
       <div class="producto-grid">
-        <img src="./imagenes/monster.jpg" alt="Monster" />
+        <img src="./monster.jpg" alt="Monster" />
       </div>
     </div>
 
