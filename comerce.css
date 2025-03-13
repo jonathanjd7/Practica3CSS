@@ -133,3 +133,31 @@
         padding: 10px;
         cursor: pointer;
       }
+/* Media Queries para dispositivos móviles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.5rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .fotos img {
+        max-width: 200px; /* Imágenes más pequeñas en pantallas medianas */
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.3rem;
+    }
+
+    p {
+        font-size: 0.9rem;
+    }
+
+    .fotos img {
+        max-width: auto; /* Imágenes aún más pequeñas en móviles */
+    }
+}
