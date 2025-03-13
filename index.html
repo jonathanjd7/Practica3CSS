@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>E-commerce UI</title>
+  
+  </head>
+  <body>
+    <h2>Producto Destacado</h2>
+    <div class="producto">
+      <img src="./imagenes/aguacoco.jpg" alt="Producto" id="producto_imagen" />
+      <h3>Agua de Coco</h3>
+      <p class="precio--oferta" id="precio">$3.99</p>
+      <div class="variantes">
+        <div
+          class="variante"
+          style="background: red"
+          onclick="cambiarImagen('imagenes/cocacola.jpg', 1.50,'Coca-Cola')"
+        >
+          Coca-Cola
+        </div>
+        <div
+          class="variante"
+          style="background: blue"
+          onclick="cambiarImagen('imagenes/mojito.jpg', 4.50, 'Mojito')"
+        >
+          Mojito
+        </div>
+        <div
+          class="variante"
+          style="background: green"
+          onclick="cambiarImagen('imagenes/cerveza.jpg', 2.50, 'Cerveza')"
+        >
+          Cerveza
+        </div>
+      </div>
+      <button>Añadir al carrito</button>
+    </div>
+
+    <h2>Menú de Categorías</h2>
+    <ul id="mega-menu">
+      <li><a href="#">Bebidas Energeticas</a></li>
+      <li><a href="#">Bebidas Alcholicas</a></li>
+      <li><a href="#" category="nuevo">Refrescos</a></li>
+    </ul>
+    <button>Añadir al carrito</button>
+
+    <h2>Productos</h2>
+    <div class="productos-grid">
+      <div class="producto-grid">
+        <img src="./imagenes/cerveza.jpg" alt="Cerveza" />
+      </div>
+      <div class="producto-grid">
+        <img src="./imagenes/cocacola.jpg" alt="Refrescos" />
+      </div>
+      <div class="producto-grid">
+        <img src="./imagenes/mojito.jpg" alt="Mojitos" />
+      </div>
+      <div class="producto-grid">
+        <img src="./imagenes/vinotinto.jpg" alt="Vino Tinto" />
+      </div>
+      <div class="producto-grid">
+        <img src="./imagenes/monster.jpg" alt="Monster" />
+      </div>
+    </div>
+
+    <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
+    <div class="carrito" id="carrito">
+      <h3>Carrito de Compras</h3>
+      <p>Aún no has añadido productos.</p>
+    </div>
+
+    <script>
+      function toggleCarrito() {
+        document.getElementById("carrito").classList.toggle("mostrar");
+      }
+
+      // Función para cambiar la imagen y el precio
+      function cambiarImagen(nuevaImagen, nuevoPrecio, nuevoTexto) {
+        let imgElemento = document.getElementById("producto_imagen");
+        let nombreElemento = document.querySelector(".producto h3");
+        let precioElemento = document.getElementById("precio");
+
+        if (imgElemento && precioElemento && nombreElemento) {
+          imgElemento.src = nuevaImagen;
+          nombreElemento.textContent = nuevoTexto; // Actualizar el texto del producto
+          precioElemento.textContent = "$" + nuevoPrecio.toFixed(2); // Actualizar el precio con dos decimales
+        } else {
+          console.error("No se encontró la imagen o el precio.");
+        }
+      }
+    </script>
+  </body>
+</html>
