@@ -19,7 +19,15 @@
        </div>
       <button>Añadir al carrito</button>
     </div>
-
+    <div class="carousel">
+      <div class="carousel-slide active" style="background: red;">50% de descuento en toda la tienda</div>
+      <div class="carousel-slide" style="background: blue;">Envío gratis en pedidos superiores a $20</div>
+      <div class="carousel-slide" style="background: green;">Compra 2 y llévate 1 gratis</div>
+      <div class="carousel-controls">
+          <button onclick="prevSlide()">&#10094;</button>
+          <button onclick="nextSlide()">&#10095;</button>
+      </div>
+  </div>
     <h2>Menú</h2>
     <ul id="mega-menu">
       <li><a href="#">Bebidas Energeticas</a></li>
@@ -33,34 +41,50 @@
       <div class="producto-grid">
         <img src="./agua.png" alt="Agua" id="prim" />
         <p class="descripcionproducto">Agua</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./cava.png" alt="Cava" id="prim" />
         <p class="descripcionproducto">Cava</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./cerveza.png" alt="Cerveza" id="prim"/>
         <p class="descripcionproducto">Cerveza</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./cocacola.png" alt="Refrescos" id="prim" />
         <p class="descripcionproducto">Refrescos</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./batidos.png" alt="Batido" id="prim" />
         <p class="descripcionproducto">Batidos</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./vinotinto.png" alt="Vino Tinto" id="prim" />
         <p class="descripcionproducto">Tinto de Verano</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./zumonaranja.png" alt="Zumo Naranja" id="prim" />
-        <p class="descripcionproducto">zumo De Naranja</p>
+        <p class="descripcionproducto">Zumo De Naranja</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       <div class="producto-grid">
         <img src="./vinorosado.png" alt="rosado" id="prim"/>
-        <p class="descripcionproducto">vino rosado</p>
+        <p class="descripcionproducto">Vino Rosado</p>
+        <button class="btn" onclick="animateButton(this)">Añadir</button>
+        <div class="checkmark"></div>
       </div>
       
     </div>
@@ -82,7 +106,35 @@
       <button id="toggle-menu">🛒</button>
      
     </div>
+    
+    <button class="filter-toggle" onclick="toggleFilter()">Filtros para movil</button>
+    <div class="filter-panel" id="filterPanel">
+        <h3>Filtrar Productos</h3>
+        <label><input type="checkbox"> Bebidas energéticas</label><br>
+        <label><input type="checkbox"> Bebidas alcohólicas</label><br>
+        <label><input type="checkbox"> Refrescos</label>
+    </div>
+    
+    <div class="footer">
+      <p>© 2025 E-commerce Drinks</p>
+    </div>
+
+    <div class="contador" id="contador">100</div>
+ 
     <script>
+        let numero = 100;
+        const contadorElemento = document.getElementById("contador");
+ 
+        const intervalo = setInterval(() => {
+            if (numero >= 0) {
+                contadorElemento.textContent = numero;
+                numero--;
+            } else {
+                clearInterval(intervalo); // Detiene el contador cuando llega a 0
+            }
+        }, 1000);
+     
+
       function toggleCarrito() {
         document.getElementById("carrito").classList.toggle("mostrar");
       }
@@ -124,7 +176,48 @@
           menuLateral.classList.remove("active");
         }
       });
-    </script>
+
+      //Script para el carrusel
+
+        let currentSlide = 0;
+        const slides = document.querySelectorAll(".carousel-slide");
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.toggle("active", i === index);
+            });
+        }
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            showSlide(currentSlide);
+        }
+        setInterval(nextSlide, 4000);
+        
+        function toggleFilter() {
+            const filterPanel = document.getElementById("filterPanel");
+            if (filterPanel.style.display === "block") {
+                filterPanel.style.display = "none";
+            } else {
+                filterPanel.style.display = "block";
+            }
+        }
+      
+    
+        // SCRIPT CHECK BOTON
+      function animateButton(button) {
+          button.innerHTML = '🛒';
+          button.classList.add('clicked');
+          let checkmark = document.createElement('div');
+          checkmark.classList.add('checkmark');
+          button.appendChild(checkmark);
+          setTimeout(() => {
+              button.innerHTML = 'Añadido';
+          }, 500);
+      }
+  </script>
   </body>
 </html>
 
