@@ -3,43 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./comerce.css" />
-    <title>E-commerce UI</title>
-  
+    <title>E-commerce Drinks</title>
+    <link rel="stylesheet" href="./css/comerce.css" />
   </head>
   <body>
-    <h2>Producto Destacado</h2>
+    <h2>Bebidas al Mejor Precio</h2>
     <div class="producto">
-      <img src="./aguacoco.jpg" alt="Producto" id="producto_imagen" />
+      <img src="./imagenes/aguacoco.jpg" alt="Producto" id="producto_imagen" />
       <h3>Agua de Coco</h3>
       <p class="precio--oferta" id="precio">$3.99</p>
       <div class="variantes">
-        <div
-          class="variante"
-          style="background: red"
-          onclick="cambiarImagen('./cocacola.jpg', 1.50,'Coca-Cola')"
-        >
-          Coca-Cola
-        </div>
-        <div
-          class="variante"
-          style="background: blue"
-          onclick="cambiarImagen('./mojito.jpg', 4.50, 'Mojito')"
-        >
-          Mojito
-        </div>
-        <div
-          class="variante"
-          style="background: green"
-          onclick="cambiarImagen('./cerveza.jpg', 2.50, 'Cerveza')"
-        >
-          Cerveza
-        </div>
-      </div>
+        <div class="variante" style="background: red" onclick="cambiarImagen('imagenes/cocacola.jpg', 1.50,'Coca-Cola')"> Coca-Cola </div>
+        <div class="variante" style="background: blue" onclick="cambiarImagen('imagenes/mojito.jpg', 4.50, 'Mojito')">Mojito </div>
+        <div  class="variante" style="background: green" onclick="cambiarImagen('imagenes/cerveza.jpg', 2.50, 'Cerveza')"> Cerveza</div>
+       </div>
       <button>Añadir al carrito</button>
     </div>
 
-    <h2>Menú de Categorías</h2>
+    <h2>Menú</h2>
     <ul id="mega-menu">
       <li><a href="#">Bebidas Energeticas</a></li>
       <li><a href="#">Bebidas Alcholicas</a></li>
@@ -50,28 +31,57 @@
     <h2>Productos</h2>
     <div class="productos-grid">
       <div class="producto-grid">
-        <img src="./cerveza.jpg" alt="Cerveza" />
+        <img src="./imagenes/agua.png" alt="Agua" id="prim" />
+        <p class="descripcionproducto">Agua</p>
       </div>
       <div class="producto-grid">
-        <img src="./cocacola.jpg" alt="Refrescos" />
+        <img src="./imagenes/cava.png" alt="Cava" id="prim" />
+        <p class="descripcionproducto">Cava</p>
       </div>
       <div class="producto-grid">
-        <img src="./mojito.jpg" alt="Mojitos" />
+        <img src="./imagenes/cerveza.png" alt="Cerveza" id="prim"/>
+        <p class="descripcionproducto">Cerveza</p>
       </div>
       <div class="producto-grid">
-        <img src="./vinotinto.jpg" alt="Vino Tinto" />
+        <img src="./imagenes/cocacola.png" alt="Refrescos" id="prim" />
+        <p class="descripcionproducto">Refrescos</p>
       </div>
       <div class="producto-grid">
-        <img src="./monster.jpg" alt="Monster" />
+        <img src="./imagenes/batidos.png" alt="Batido" id="prim" />
+        <p class="descripcionproducto">Batidos</p>
       </div>
+      <div class="producto-grid">
+        <img src="./imagenes/vinotinto.png" alt="Vino Tinto" id="prim" />
+        <p class="descripcionproducto">Tinto de Verano</p>
+      </div>
+      <div class="producto-grid">
+        <img src="./imagenes/zumonaranja.png" alt="Zumo Naranja" id="prim" />
+        <p class="descripcionproducto">zumo De Naranja</p>
+      </div>
+      <div class="producto-grid">
+        <img src="./imagenes/vinorosado.png" alt="rosado" id="prim"/>
+        <p class="descripcionproducto">vino rosado</p>
+      </div>
+      
     </div>
 
-    <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
+   <!-- <button class="carrito-btn" onclick="toggleCarrito()">🛒</button>
     <div class="carrito" id="carrito">
       <h3>Carrito de Compras</h3>
       <p>Aún no has añadido productos.</p>
     </div>
+    -->
+    <!-- Menú lateral -->
+    <div id="menu-lateral" class="menu-lateral">
+        <h3>Carrito de Compras</h3>
+        <p>Aún no has añadido productos.</p>
+    </div>
 
+    <!-- Contenido principal -->
+    <div id="contenido-principal" class="contenido-principal">
+      <button id="toggle-menu">🛒</button>
+     
+    </div>
     <script>
       function toggleCarrito() {
         document.getElementById("carrito").classList.toggle("mostrar");
@@ -91,6 +101,30 @@
           console.error("No se encontró la imagen o el precio.");
         }
       }
+      // Obtener elementos del DOM
+      const menuLateral = document.getElementById("menu-lateral");
+      const toggleMenuButton = document.getElementById("toggle-menu");
+      const contenidoPrincipal = document.getElementById("contenido-principal");
+
+      // Función para alternar el estado del menú
+      function toggleMenu() {
+        menuLateral.classList.toggle("active");
+      }
+
+      // Abrir el menú al hacer clic en el botón
+      toggleMenuButton.addEventListener("click", toggleMenu);
+
+      // Cerrar el menú si se hace clic fuera de él
+      document.addEventListener("click", function (event) {
+        const isClickInsideMenu = menuLateral.contains(event.target);
+        const isClickOnToggleButton = toggleMenuButton.contains(event.target);
+
+        // Si el clic no está dentro del menú ni en el botón, cerrar el menú
+        if (!isClickInsideMenu && !isClickOnToggleButton) {
+          menuLateral.classList.remove("active");
+        }
+      });
     </script>
   </body>
 </html>
+
